@@ -15,6 +15,7 @@ func main() {
 	// env
 	// input/output/error
 	// exec
+	// signal(SIGCHLD, SIG_IGN);
 
 	fmt.Println(user.Lookup("root"))
 	u, _ := user.Lookup("root")
