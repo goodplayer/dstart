@@ -3,20 +3,20 @@
 start a program as daemon service. for linux &amp; mac
 
 
-####help
+#### help
 
 ```
 dstart -h
 dstart --help
 ```
 
-####usage
+#### usage
 
 ```
 dstart [options] executable [params...]
 ```
 
-####option usage
+#### option usage
 
 ```
 Usage of ./dstart:
@@ -36,9 +36,9 @@ Usage of ./dstart:
         -wd working_directory
 ```
 
-####example
+#### example
 
-#####tail a file then write to another
+##### tail a file then write to another
 ```
 ./dstart -in ~/input_file -out ~/output_file -wd /usr/bin tail
 ```
