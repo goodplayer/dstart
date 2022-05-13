@@ -8,6 +8,8 @@ import (
 	"os/user"
 	"strconv"
 	"syscall"
+
+	"github.com/goodplayer/dstart/dstartcore"
 )
 
 var username string
@@ -16,6 +18,7 @@ var input string
 var output string
 var erroroutput string
 var etoo bool
+var configFilePath string
 
 type arrayFlags []string
 
@@ -35,14 +38,20 @@ func init() {
 	flag.StringVar(&wd, "wd", "", "-wd working_directory")
 	flag.Var(&env, "env", "-env key=value [-env key=value ...]")
 	flag.StringVar(&input, "in", "", "-in input_file")
-	flag.StringVar(&output, "out", "", "-out output_file (currently overwriten file not create a new one)")
-	flag.StringVar(&erroroutput, "err", "", "-err error_output_file (currently overwriten file not create a new one)")
+	flag.StringVar(&output, "out", "", "-out output_file (currently overwritten file not create a new one)")
+	flag.StringVar(&erroroutput, "err", "", "-err error_output_file (currently overwritten file not create a new one)")
 	flag.BoolVar(&etoo, "etoo", false, "-etoo : redirect error output to standard output")
+	flag.StringVar(&configFilePath, "c", "", "-c <toml config file> : this will override all the other parameters")
 }
 
 // dstart [options] executable [params...]
 func main() {
 	flag.Parse()
+
+	if len(configFilePath) > 0 {
+		dstartcore.ProcessDstartFromConfigFile(configFilePath)
+		return
+	}
 
 	if len(flag.Args()) <= 0 {
 		log.Fatalln("should have executable file. illegal argument. usage: dstart [options] executable [params...]")

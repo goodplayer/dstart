@@ -25,3 +25,7 @@ _testmain.go
 
 # idea
 /.idea
+
+/config.toml
+/dstart
+/dstart.exe

@@ -18,6 +18,8 @@ dstart [options] executable [params...]
 
 #### option usage
 
+##### 1. Direct start a program
+
 ```
 Usage of ./dstart:
   -env value
@@ -35,6 +37,14 @@ Usage of ./dstart:
   -wd string
         -wd working_directory
 ```
+
+##### 2. Start programs from a configuration file
+
+```
+./dstart -c config.toml
+```
+
+Note: The config file can be either found in working directory or application file directory.
 
 #### example
 

@@ -1,0 +1,28 @@
+[global]
+#TODO support include files
+IncludeConfigFileExp = "service.*.toml"
+
+[global.envs]
+GOROOT = "d:\\go"
+GLOBAL_PARAM = "global_settings"
+
+[service.bash]
+Description = "sample bash script"
+ExecCommand = "/bin/bash -c awk"
+Username = "root"
+#TODO Uid support
+#Uid="1"
+Groupname = "root"
+#TODO GroupId support
+#GroupId="1"
+WorkingDirectory = "/tmp"
+Envs = { GOPATH = "d:\\gopath", HOME = "/home/usr" }
+#InputFile=""
+OutputFile = "/tmp/output1.log"
+OutputFileAppend = false
+ErrorOutputFile = "/tmp/output_error.log"
+ErrorOutputFileAppend = false
+RedirectErrorOutputToOutput = false
+#TODO PID_FILE support
+#PID_FILE="/tmp/bashpid.pid"
+#TODO start section/stop section/dependency/error handling
