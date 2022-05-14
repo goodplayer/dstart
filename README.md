@@ -1,7 +1,8 @@
 # dstart
 
-start a program as daemon service. for linux &amp; mac
+Start a program as daemon service. for linux &amp; mac , if you don't want to write complex systemd service file.
 
+Will be good when use this tool together with @reboot command in crontab :) .
 
 #### help
 
@@ -16,7 +17,7 @@ dstart --help
 dstart [options] executable [params...]
 ```
 
-#### option usage
+#### A. Option usage
 
 ##### 1. Direct start a program
 
@@ -46,7 +47,9 @@ Usage of ./dstart:
 
 Note: The config file can be either found in working directory or application file directory.
 
-#### example
+See [config.toml.example](config.toml.example) file for config example
+
+#### B. Example
 
 ##### tail a file then write to another
 ```
