@@ -37,7 +37,16 @@ func startFromConfig(c *Config) error {
 }
 
 func VerifyService(service Service) error {
-	//FIXME
+	if !service.RedirectErrorOutputToOutput {
+		if len(service.ErrorOutputFile) <= 0 {
+			return errors.New("verify config error: need error output file when not setting redirect error output file")
+		}
+	}
+
+	if len(service.ExecCommand) <= 0 {
+		return errors.New("need exec command")
+	}
+
 	return nil
 }
 
@@ -168,11 +177,7 @@ func StartService(service Service, globalEnv map[string]string) error {
 
 	// exec
 	cmds := strings.Split(strings.TrimSpace(service.ExecCommand), " ")
-	var args []string
-	if len(cmds) > 1 {
-		args = cmds[1:]
-	}
-	p, err := os.StartProcess(cmds[0], args, attr)
+	p, err := os.StartProcess(cmds[0], cmds, attr)
 	signal.Ignore(syscall.SIGCHLD)
 
 	if err != nil {
